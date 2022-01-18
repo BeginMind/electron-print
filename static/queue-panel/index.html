@@ -1,0 +1,83 @@
+<!--
+ * @Description: 
+ * @Date: 2022-01-14 14:06:18
+ * @LastEditTime: 2022-01-17 15:33:57
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/main.css">
+  <title></title>
+</head>
+<body>
+  <div id="content">
+    <div id="loading-text"></div>
+    <div id="progressBar-bgc"></div>
+  </div>
+</body>
+</html>
+<script>
+const { ipcRenderer } = require('electron')
+
+ipcRenderer.on('loading-queue-print', (e, argv) => {
+  console.log('打印队列: ', argv)
+  // const { text } = argv
+  // writeText(text)
+  const { currentPrint, printQueue, totalNum, result } = argv
+
+  const currentIndex = totalNum - printQueue.length + 1
+  // currentPrint ? currentPrint.fileUrl : ''
+
+  let words = ''
+  if (printQueue.length) {
+    words = `正在打印: ${currentIndex} / ${totalNum}`
+    progressBar(currentIndex, totalNum)
+  } else {
+    progressBar(1, 1)
+    words = `打印完成( ${whenDone(result)} )`
+  }
+  writeText(words)
+})
+
+function writeText (text) {
+  const dom = document.querySelector('#loading-text')
+  dom.innerText = text
+}
+
+/**
+  * 进度条显示
+  * @param {Number} current - 当前
+  * @param {Number} total - 总数
+  *
+  */
+function progressBar (current, total) {
+  const progressBar = document.querySelector('#progressBar-bgc')
+  // console.log(current, total)
+  const width = (current / total) * 100 + '%'
+  progressBar.style.width = width
+  // console.log(width)
+}
+
+/**
+  * 处理打印结果
+  * @param {Object} result - 打印结果
+  * @returns {String} - 打印结果描述
+  */
+function whenDone (result) {
+  if (!result) throw new Error('无返回打印结果')
+  const { success, fail } = result
+  const successNum = success.length
+  const failNum = fail.length
+  const total = successNum + failNum
+  let word = ''
+  if (fail.length) {
+    word = `共打印${total}, 成功: ${successNum}, 失败: ${failNum}`
+  } else {
+    word = `共打印${total}, 成功: ${successNum}`
+  }
+  return word
+}
+</script>

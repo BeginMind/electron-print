@@ -1,0 +1,98 @@
+<!--
+ * @Description: 
+ * @Date: 2022-01-14 16:55:39
+ * @LastEditTime: 2022-01-18 21:14:48
+-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="singleDownload()">单个下载队列(1个)</button>
+  <button onclick="singleDownloadQueue()">单个下载队列(3个) - 模拟队列</button>
+  <button onclick="multipleDownload()">批量下载队列(3个)</button>
+  <button onclick="preview('a')">预览文件A</button>
+  <button onclick="preview('b')">预览文件B</button>
+  <div id="app"></div>
+</body>
+</html>
+<script>
+const origin = 'http://localhost:45656'
+const url = `${origin}/print?fileUrl=http://192.168.131.53:36666/aabb.pdf`
+
+/**
+ * 预览文件
+ * @param {} index
+ */
+function preview (index = 'a') {
+  const fileA = 'http://192.168.131.53:36666/canvas_test.pdf'
+  const fileB = 'http://192.168.131.53:36666/aabb.pdf'
+  const url = `${origin}/preview?fileUrl=${index === 'a' ? fileA : fileB}`
+  // 返回 204
+  fetch(url)
+  // .then(res => res.json())
+  // .then(res => {
+  //   console.log(res)
+  // })
+}
+
+/**
+ * 单个打印
+ */
+function singleDownload () {
+  fetch(url + `&_ts=${randomString()}`, { method: 'POST' })
+    .then((res) => res.json())
+    .then(res => {
+      console.log(res)
+    })
+}
+
+/**
+ * 批量打印
+ */
+function multipleDownload () {
+  // fileUrl 地址
+  const urls = [
+    'http://192.168.131.53:36666/aabb.pdf',
+    'http://192.168.131.53:36666/canvas_test.pdf',
+    'http://192.168.131.53:36666/nginx.pdf'
+  ]
+  const url = `${origin}/multiple-print?fileUrl=` + urls.join(';')
+  fetch(url + `&_ts=${randomString()}`, { method: 'POST' })
+    .then((res) => res.json())
+    .then(res => {
+      console.log(res)
+    })
+}
+
+/**
+ * 单个下载队列(3个) - 模拟队列
+ */
+async function singleDownloadQueue () {
+  let pr = []
+  for (let i = 0; i < 3; i++) {
+    pr.push(doIt(i))
+  }
+
+  console.log(pr)
+
+  let result = await Promise.all(pr)
+  result = result.map((data) => data)
+  const app = document.querySelector('#app')
+  app.innerText = JSON.stringify(result)
+}
+
+function doIt (index = 1) {
+  return fetch(url + `&_ts=${randomString()}`, { method: 'POST' })
+    .then((res) => res.json())
+}
+
+function randomString () {
+  const r = Math.ceil(Math.random() * 20000000)
+  return r
+}
+</script>

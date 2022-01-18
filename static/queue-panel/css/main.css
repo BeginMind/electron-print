@@ -1,0 +1,40 @@
+body, html {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+  line-height: 100vh;
+  /* background-color: rgba(0, 0, 0, 0); */
+  background-color: aliceblue;
+  border-radius: 30px;
+  position: relative;
+}
+
+#loading-text {
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  letter-spacing: 2px;
+}
+
+#progressBar-bgc {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  /* background-color: #1890ff; */
+  background: linear-gradient(0.25turn, rgb(16, 142, 233) 0%, rgb(135, 208, 104) 100%);
+  border-radius: inherit;
+  pointer-events: unset;
+  transition: all .4s cubic-bezier(.08,.82,.17,1) 0s;
+}
