@@ -8046,11 +8046,6 @@ pdfjs-dist@2.6.347:
   resolved "https://registry.npmmirror.com/pdfjs-dist/download/pdfjs-dist-2.6.347.tgz#f257ed66e83be900cd0fd28524a2187fb9e25cd5"
   integrity sha1-8lftZug76QDND9KFJKIYf7niXNU=
 
-pdfjs-dist@^2.12.313:
-  version "2.12.313"
-  resolved "https://registry.npmmirror.com/pdfjs-dist/download/pdfjs-dist-2.12.313.tgz#62f2273737bb956267ae2e02cdfaddcb1099819c"
-  integrity sha512-1x6iXO4Qnv6Eb+YFdN5JdUzt4pAkxSp3aLAYPX93eQCyg/m7QFzXVWJHJVtoW48CI8HCXju4dSkhQZwoheL5mA==
-
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/pend/download/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
