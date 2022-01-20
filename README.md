@@ -84,3 +84,9 @@ fetch(`${url}?fileUrl=${fileUrl}`)
 
 1. 目前仅做了 PDF 打印支持，其他文件类型还没有做适配处理；
 2. 尚未对预留的 socket 内容进行开发，目前仅支持 http 请求；
+
+
+
+## 第三方包推荐
+1. 日志调试 ( [electron-log](https://github.com/megahertz/electron-log) );
+2. 自动升级 ( electron-updater );
