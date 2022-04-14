@@ -1,0 +1,34 @@
+<!--
+ * @Description: 通过 protocol 自定义协议唤醒 app
+ * @Date: 2022-04-14 16:08:50
+ * @LastEditTime: 2022-04-14 16:48:13
+-->
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigate by protocol</title>
+</head>
+
+<body>
+  <button>通过自定义协议打开程序</button>
+</body>
+<script>
+  const button = document.querySelector('button')
+
+  const WAKE_PROTOCOL_IDENTIFIER = 'BFSilentPrint'
+
+  function navigateToApp () {
+    // 也可以在里面添加一些参数
+    // 例如: BFSilentPrint://name=bigFish&age=24 ....
+    const url = `${WAKE_PROTOCOL_IDENTIFIER}://`
+    window.open(url, '_self')
+  }
+
+  button.addEventListener('click', navigateToApp)
+</script>
+
+</html>

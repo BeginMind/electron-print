@@ -68,11 +68,11 @@ function createWindow () {
       mainWindow.webContents.openDevTools()
     }
   })
-
   require('./tray') // 加载托盘
   require('./printer') // 打印监听
   require('./events') // 服务事件加载
   require('./common') // 通用事件
+  require('./events/execute-protocol') // 设置自定义协议唤醒
 }
 
 // 限制只能开启一个应用(4.0以上版本)
