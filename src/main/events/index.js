@@ -1,7 +1,7 @@
 /*
  * @Description: 注册其他事件
  * @Date: 2022-01-10 17:39:25
- * @LastEditTime: 2022-01-17 15:28:30
+ * @LastEditTime: 2022-04-14 18:43:40
  */
 
 // express 打印服务
@@ -15,3 +15,6 @@ require('./file-preview')
 
 // 打印进度条窗口
 require('./queue-panel')
+
+// 设置自定义协议唤醒
+require('./execute-protocol')
