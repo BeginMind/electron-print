@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2021-09-13 14:17:28
- * @LastEditTime: 2022-01-18 21:20:19
+ * @LastEditTime: 2022-04-14 15:39:43
  */
 import Vue from 'vue'
 import axios from 'axios'
@@ -27,7 +27,7 @@ const app = {
   isGetRootName: false
 }
 /**
- * 注册路由守卫, 改变 title 
+ * 注册路由守卫, 改变 title
  */
 router.beforeEach((to, from, next) => {
   const { meta } = to
