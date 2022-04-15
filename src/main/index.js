@@ -126,6 +126,14 @@ function closeMainWin () {
   mainWindow.close()
 }
 
+/**
+ * 隐藏 主窗口
+ */
+function hideMainWin () {
+  willQuitApp = true
+  mainWindow.hide()
+}
+
 function getMainWindow () {
   return mainWindow
 }
@@ -133,7 +141,8 @@ function getMainWindow () {
 export {
   showMainWin,
   closeMainWin,
-  getMainWindow
+  getMainWindow,
+  hideMainWin
 }
 
 /**
